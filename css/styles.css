@@ -279,7 +279,7 @@ a[title] {
     min-width: 200px;
 
     color: var(--main-white-color);
-    background-color: var(--accent-color);
+    background-color: rgba(33, 150, 243, 1);
     border-color: transparent;
     font-family: inherit; 
     font-weight: 700; 
@@ -289,7 +289,12 @@ a[title] {
     cursor: pointer;
     text-decoration: none;
     text-align: center;
+    transition: background-color var(--transition);
 
+}
+
+.hero .button:hover {
+    background-color: rgba(24, 140, 232, 1);
 }
 
 /* Features */
