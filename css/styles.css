@@ -18,7 +18,7 @@ nav menu lower line ECECEC*/
     --additional-text-color: rgba(255, 255, 255, 0.6);
     --overlay-bg-color: #C4C4C4;
     --passive-link-color: #AFB1B8;
-    --transition: 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 
@@ -185,15 +185,13 @@ a[title] {
     display: block;
     padding-top: 32px;
     padding-bottom: 32px;
-
     color: var(--title-text-color); 
-    
     font-weight: 500;
     font-size: 14px;
     line-height: 1.14;
     letter-spacing: 0.02em;
     transition: color var(--transition);
-    
+    position: relative;
     
 
 }
@@ -201,6 +199,20 @@ a[title] {
 .site-nav .link:hover, .site-nav .link:focus {
     color: var(--accent-color);
 }
+
+.site-nav .link:hover::after,
+.site-nav .link:focus::after, .current-page::after {
+    content: '';
+    position:absolute;
+    width: 100%;
+    height: 2px; 
+    background-color: var(--accent-color);
+    bottom: 0;
+    left: 0;
+
+
+}    
+
 
 /*
 .site-nav .link.current {
@@ -211,6 +223,9 @@ a[title] {
     display: flex;
 }
 
+.main-nav {
+    border-bottom: 1px solid #ECECEC;
+}
 /*
 .site-nav .item {
     outline: 1px solid red;
@@ -572,6 +587,9 @@ background-image: url('../images/antenna.svg');
     flex-basis: calc((100% - 3 * 30px) / 3);
     margin-right: 30px;
     margin-bottom: 30px;
+    
+    
+    
 
 }
 
@@ -584,12 +602,70 @@ background-image: url('../images/antenna.svg');
 }
 
 
+.preview {
+    position: relative;
+    overflow: hidden;
+}
+
 .project-details {
     padding: 20px 24px;
     border: 1px solid #EEEEEE;
     border-top: none;
     background-color: var(--main-white-color);
+    overflow: hidden;
+    
 }
+
+.project-description {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 294px;
+    padding: 63px 24px;
+    background-color: rgba(33, 150, 243, 0.9);
+    align-items: center;
+    overflow: auto;
+    opacity: 1;
+   
+    transform: translateY(100%);
+    transition: transform var(--transition);
+    transition: transform var(--transition);
+
+}
+
+.project:hover .project-description {
+   transform: translateY(0);
+}
+
+.info {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+    overflow: auto;
+    
+}
+
+
+
+/*
+.project::before {
+    position: absolute;
+    content:'';
+    width: 370px;
+    height: 294px;
+    background-color: rgba(33, 150, 243, 0.9);
+    opacity: 0;
+    
+}
+
+.project:hover::before {
+    opacity: 1;
+}
+*/
+
 .project .title {
     color: var(--title-text-color);
     font-weight: 700;  
@@ -639,17 +715,28 @@ background-image: url('../images/antenna.svg');
     0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
     
+    
 
 }
 
 .project-link {
     display: block;
     transition: box-shadow var(--transition);
+    
 }
+
+.project-description:hover {
+    opacity: 1;
+
+}
+
+
 .project-link:hover, .project-link:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
     0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+
+  
 }
 
 /* Footer */
@@ -769,4 +856,82 @@ a[href="tel:+380991111111"] {
 
 .social-icon-footer {
     fill: var(--main-white-color);
+}
+
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    opacity: 1;
+    transition: opacity var(--transition), visibility var(--transition);
+    
+   
+
+}
+
+.backdrop.is-hidden {
+ opacity: 0;
+ pointer-events: none;
+ visibility: hidden;
+}
+
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+}
+
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    min-height: 581px;
+    min-width: 528px; 
+
+    background-color: var(--main-white-color);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    
+
+   transform: translate(-50%, -50%) scale(1); 
+   opacity: 1;   
+   transition: transform var(--transition), opacity var(--transition);
+
+}
+
+
+.close-button {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 8px;
+    right: 8px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: var(--main-white-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+
+}
+
+.close-button:hover {
+    cursor: pointer;
+    border-color:#2F303A;
+}
+
+.close-icon {
+
+    width: 11px;
+    height: 11px;
+    fill: #000000;
 }
