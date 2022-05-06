@@ -205,7 +205,8 @@ a[title] {
     content: '';
     position:absolute;
     width: 100%;
-    height: 2px; 
+    height: 4px; 
+    border-radius: 2px;
     background-color: var(--accent-color);
     bottom: 0;
     left: 0;
@@ -431,7 +432,7 @@ background-image: url('../images/antenna.svg');
 .services-label-description {
     font-weight: 700;
     line-height: 1.14;
-    font-size: 16px;
+    font-size: 14px;
     font-family: inherit;
     text-decoration: none;
     text-transform: uppercase;
